@@ -24,6 +24,7 @@ Operators
 * [onNone](https://github.com/RuiAAPeres/OptionalExtensions#onnone-void---void---optionalwrapped-injects-a-side-effect-in-the-none-branch)
 * [isSome](https://github.com/RuiAAPeres/OptionalExtensions#issome-bool)
 * [isNone](https://github.com/RuiAAPeres/OptionalExtensions#isnone-bool)
+* [flatten](https://github.com/RuiAAPeres/OptionalExtensions#flatten-void---any)
 
 ####`filter: (Wrapped -> Bool) -> Optional<Wrapped>`
 
@@ -113,6 +114,16 @@ let isSome = number.isNone // false
 
 let nilledNumber: Int? = nil
 let isSome = nilledNumber.isNone // true
+```
+
+####`flatten: Void -> Any?`
+
+```swift
+let number: Int??? = 3
+number.flatten() // .Some(3)
+
+let nilledNumber: Int??? = nil
+nilledNumber.flatten() // .None
 ```
 
 Setup

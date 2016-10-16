@@ -225,4 +225,50 @@ class OptionalExtensionsTests: XCTestCase {
         // then
         XCTAssertEqual(result, 100)
     }
+
+    // MARK: - flatten
+
+    func test_flatten_whenInvokedOnNilValue() {
+        // given
+        let nilledNumber: Int? = nil
+
+        // when
+        let result = nilledNumber.flatten()
+
+        // then
+        XCTAssertNil(result)
+    }
+
+    func test_flatten_whenInvokedOnNestedNilValue() {
+        // given
+        let nestedNilledNumber: Int??? = nil
+
+        // when
+        let result = nestedNilledNumber.flatten()
+
+        // then
+        XCTAssertNil(result)
+    }
+
+    func test_flatten_whenInvokedOnNonNilValue() {
+        // given
+        let nonNilledNumber: Int? = 1
+
+        // when
+        let result = nonNilledNumber.flatten()
+
+        // then
+        XCTAssertEqual(result as? Int, 1)
+    }
+
+    func test_flatten_whenInvokedOnNestedNonNilValue() {
+        // given
+        let nestedNonNilledNumber: Int??? = 1
+
+        // when
+        let result = nestedNonNilledNumber.flatten()
+
+        // then
+        XCTAssertEqual(result as? Int, 1)
+    }
 }

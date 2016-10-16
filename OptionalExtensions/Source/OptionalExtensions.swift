@@ -45,4 +45,27 @@ public extension Optional {
     var isNone: Bool {
         return !isSome
     }
+
+    func flatten() -> Any? {
+        return self.unwrap()
+    }
+}
+
+protocol Unwrappable {
+
+    func unwrap() -> Any?
+}
+
+extension Optional: Unwrappable {
+
+    func unwrap() -> Any? {
+        switch self {
+        case nil:
+            return nil
+        case let unwrappable as Unwrappable:
+            return unwrappable.unwrap()
+        case let any:
+            return any
+        }
+    }
 }
